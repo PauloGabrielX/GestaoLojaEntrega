@@ -52,7 +52,6 @@ public class ClienteController {
 		} catch (Exception e) {
 			return new ResponseEntity<>("Falha ao tentar Deletar", HttpStatus.BAD_REQUEST);
 		}
-
 	}
 
 	@GetMapping("/findAll")

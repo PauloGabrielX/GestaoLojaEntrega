@@ -10,18 +10,17 @@ import app.Repository.ClienteRepository;
 
 @Service
 public class ClienteService {
-	
+
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
-	public String save(Cliente cliente) {
-		 this.clienteRepository.save(cliente);
-		return "Cliente salvo com sucesso!";
 
+	public String save(Cliente cliente) {
+		this.clienteRepository.save(cliente);
+		return "Cliente salvo com sucesso!";
 	}
 
 	public String update(Cliente cliente, long id) {
-		cliente.setId(id);	
+		cliente.setId(id);
 		this.clienteRepository.save(cliente);
 		return "Cliente Atualizado com sucesso!";
 	}
