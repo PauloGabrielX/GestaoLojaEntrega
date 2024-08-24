@@ -2,6 +2,8 @@ package app.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public class VendaRepository extends JpaRepository<>{
+import app.Entity.Venda;
+
+public interface VendaRepository extends JpaRepository<Venda, Long>{
 
 }

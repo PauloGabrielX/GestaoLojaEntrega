@@ -2,6 +2,8 @@ package app.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public class FuncionarioRepository extends JpaRepository<> {
+import app.Entity.Funcionario;
+
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 
 }
