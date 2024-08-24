@@ -27,7 +27,8 @@ public class ClienteController {
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Cliente cliente) {
 		try {
-
+			String mensagem = this.clienteService.save(cliente);
+			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>("Falha ao salvar", HttpStatus.BAD_REQUEST);
 		}
@@ -36,7 +37,8 @@ public class ClienteController {
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(Cliente cliente, @PathVariable long id) {
 		try {
-
+			String mensagem = this.clienteService.update(cliente, id);
+			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>("Falha ao tentar Atualizar", HttpStatus.BAD_REQUEST);
 		}
@@ -45,7 +47,8 @@ public class ClienteController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> delete(@PathVariable long id) {
 		try {
-
+			String mensagem = this.clienteService.delete(id);
+			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>("Falha ao tentar Deletar", HttpStatus.BAD_REQUEST);
 		}
@@ -55,21 +58,21 @@ public class ClienteController {
 	@GetMapping("/findAll")
 	public ResponseEntity<List<Cliente>> findAll() {
 		try {
-
+			List<Cliente> lista = this.clienteService.findAll();
+			return new ResponseEntity<>(lista, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>("Falha ao salvar", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-		return null;
 	}
 
 	@GetMapping("/findById/{id}")
 	public ResponseEntity<Cliente> findbyId(@PathVariable long id) {
 		try {
-
+			Cliente cliente = this.clienteService.findbyId(id);
+			return new ResponseEntity<>(cliente, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>("Falha ao salvar", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-		return null;
 	}
 
 }
