@@ -21,6 +21,6 @@ public class Produto {
 	private Long id;
 	private String endereçoEntrega;
 	private Double valorTotal;
-
+	private Double valorTotal1;
 }
 
