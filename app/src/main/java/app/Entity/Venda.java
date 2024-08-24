@@ -1,9 +1,17 @@
 package app.Entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +30,16 @@ public class Venda {
 	private String nome;
 	private Double valor;
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("vendas")
+	private Cliente cliente;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "venda_produto")
+	private List<Produto> produtos;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("vendas")
+	private Funcionario funcionario;
+	
 }
