@@ -35,7 +35,7 @@ public class Venda {
 	private Cliente cliente;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "venda_produto")
+	@JoinTable(name = "venda_produtos")
 	private List<Produto> produtos;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
