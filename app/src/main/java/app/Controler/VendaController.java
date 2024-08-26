@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Venda;
 import app.Service.VendaService;
+import jakarta.validation.Valid;
 
+@Validated
 @RestController
 @RequestMapping("/api/venda")
 public class VendaController {
@@ -25,7 +28,7 @@ public class VendaController {
 	private VendaService vendaService;
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody Venda venda) {
+	public ResponseEntity<String> save(@RequestBody @Valid Venda venda) {
 		try {
 			String mensagem = this.vendaService.save(venda);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -35,7 +38,7 @@ public class VendaController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(Venda venda, @PathVariable long id) {
+	public ResponseEntity<String> update(@Valid Venda venda, @PathVariable long id) {
 		try {
 			String mensagem = this.vendaService.update(venda, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);

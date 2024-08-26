@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Funcionario;
 import app.Service.FuncionarioService;
+import jakarta.validation.Valid;
 
+@Validated
 @RestController
 @RequestMapping("/api/funcionario")
 public class FuncionarioControler {
@@ -25,7 +28,7 @@ public class FuncionarioControler {
 	private FuncionarioService funcionarioService;
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody Funcionario funcionario) {
+	public ResponseEntity<String> save(@RequestBody @Valid Funcionario funcionario) {
 		try {
 			String mensagem = this.funcionarioService.save(funcionario);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -35,7 +38,7 @@ public class FuncionarioControler {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(Funcionario funcionario, @PathVariable long id) {
+	public ResponseEntity<String> update(@Valid Funcionario funcionario, @PathVariable long id) {
 		try {
 			String mensagem = this.funcionarioService.update(funcionario, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
