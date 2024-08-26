@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import app.Entity.Cliente;
 import app.Entity.Venda;
 import app.Service.VendaService;
 import jakarta.validation.Valid;
@@ -45,7 +44,7 @@ public class VendaController {
 			String mensagem = this.vendaService.update(venda, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>("Falha ao tentar Atualizar", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Falha ao tentar Atualizar" + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 
