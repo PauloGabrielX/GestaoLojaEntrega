@@ -39,5 +39,13 @@ public class ClienteService {
 		Cliente cliente = this.clienteRepository.findById(id).get();
 		return cliente;
 	}
-
+	
+	public List<Cliente> findByNome(String nome){
+		return this.clienteRepository.findByNome(nome);
+	}
+	
+	public List<Cliente> findByCpf(String cpf){
+		return this.clienteRepository.findByCpf(cpf);
+	}
+	
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Cliente;
@@ -77,4 +78,24 @@ public class ClienteController {
 		}
 	}
 
+	@GetMapping("/findByNome")
+	public ResponseEntity<List<Cliente>> findByNome(@RequestParam String nome) {
+		try {
+			List<Cliente> lista = this.clienteService.findByNome(nome);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@GetMapping("/findByCpf")
+	public ResponseEntity<List<Cliente>> findByCpf(@RequestParam String cpf) {
+		try {
+			List<Cliente> lista = this.clienteService.findByCpf(cpf);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+
+	}
 }

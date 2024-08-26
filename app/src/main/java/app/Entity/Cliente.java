@@ -12,7 +12,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,17 +30,21 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "Nome deve ser inserido!")
 	private String nome;
-	  
+
 	@CPF(message = "CPF inválido")
 	@Pattern(regexp = "\\d{11}", message = "O CPF deve ter exatamente 11 dígitos numéricos")
 	private String cpf;
-	
+
+	@Positive(message = "A idade deve ser um número positivo")
+	@NotNull(message = "A idade não pode ser nula")
+	private int idade;
+
 	@NotBlank(message = "O número de telefone não pode ser nulo ou vazio")
 	private String telefone;
-	
+
 	@OneToMany(mappedBy = "cliente")
 	@JsonIgnoreProperties("cliente")
 	private List<Venda> vendas;

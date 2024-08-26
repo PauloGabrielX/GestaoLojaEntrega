@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -26,15 +27,15 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String endereçoEntrega;
-	
-	@NotNull(message = "O valor total não pode ser nulo")
-	@Positive(message = "O valor total deve ser um número positivo")
-	private Double valorTotal;
-	
-	@ManyToMany(mappedBy = "produtos")
-    @JsonIgnoreProperties("produtos")
-    private List<Venda> vendas;
-}
 
+	@NotBlank(message = "Nome deve ser inserido!")
+	private String nome;
+
+	@NotNull(message = "O valor não pode ser nulo")
+	@Positive(message = "O valor deve ser um número positivo")
+	private Double valor;
+
+	@ManyToMany(mappedBy = "produtos")
+	@JsonIgnoreProperties("produtos")
+	private List<Venda> vendas;
+}

@@ -40,4 +40,12 @@ public class ProdutoService {
 		return produto;
 	}
 
+	public List<Produto> findByNome(String nome) {
+		return this.produtoRepository.findByNome(nome);
+	}
+
+	public List<Produto> findByValor(Double valor) {
+		return this.produtoRepository.findByValor(valor);
+	}
+
 }
