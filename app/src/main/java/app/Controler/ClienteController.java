@@ -39,7 +39,7 @@ public class ClienteController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@Valid Cliente cliente, @PathVariable long id) {
+	public ResponseEntity<String> update(@RequestBody @Valid  Cliente cliente, @PathVariable long id) {
 		try {
 			String mensagem = this.clienteService.update(cliente, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);

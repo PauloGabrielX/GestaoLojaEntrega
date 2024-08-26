@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.Entity.Cliente;
 import app.Entity.Venda;
 import app.Service.VendaService;
 import jakarta.validation.Valid;
@@ -38,7 +40,7 @@ public class VendaController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@Valid Venda venda, @PathVariable long id) {
+	public ResponseEntity<String> update(@RequestBody @Valid Venda venda, @PathVariable long id) {
 		try {
 			String mensagem = this.vendaService.update(venda, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -75,5 +77,16 @@ public class VendaController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	@GetMapping("/findByEndereco")
+	public ResponseEntity<List<Venda>> findByEndereco(@RequestParam String endereco) {
+		try {
+			List<Venda> lista = this.vendaService.findByEndereco(endereco);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+
 	}
 }

@@ -39,7 +39,7 @@ public class FuncionarioController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@Valid Funcionario funcionario, @PathVariable long id) {
+	public ResponseEntity<String> update(@RequestBody @Valid  Funcionario funcionario, @PathVariable long id) {
 		try {
 			String mensagem = this.funcionarioService.update(funcionario, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);

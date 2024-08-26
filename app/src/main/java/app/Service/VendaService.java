@@ -39,5 +39,8 @@ public class VendaService {
 		Venda venda = this.vendaRepository.findById(id).get();
 		return venda;
 	}
-
+	
+	public List<Venda> findByEndereco(String endereco){
+		return this.vendaRepository.findByEndereco(endereco);
+	}
 }

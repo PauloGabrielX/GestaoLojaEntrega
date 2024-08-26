@@ -30,7 +30,7 @@ public class Venda {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String enderecoEntrega;
+	private String endereco;
 
 	@NotNull(message = "O valor total não pode ser nulo")
 	@Positive(message = "O valor total deve ser um número positivo")
