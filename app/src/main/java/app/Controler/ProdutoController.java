@@ -29,7 +29,7 @@ public class ProdutoController {
 	private ProdutoService produtoService;
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody @Valid Produto produto) {
+	public ResponseEntity<String> save(@RequestBody Produto produto) {
 		try {
 			String mensagem = this.produtoService.save(produto);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -39,7 +39,7 @@ public class ProdutoController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@RequestBody @Valid Produto produto, @PathVariable long id) {
+	public ResponseEntity<String> update(@RequestBody Produto produto, @PathVariable long id) {
 		try {
 			String mensagem = this.produtoService.update(produto, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);

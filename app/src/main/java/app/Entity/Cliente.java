@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -46,6 +47,6 @@ public class Cliente {
 	private String telefone;
 
 	@OneToMany(mappedBy = "cliente")
-	@JsonIgnoreProperties("cliente")
-	private List<Venda> vendas;
+	@JsonIgnore
+	private List<Venda> venda;
 }

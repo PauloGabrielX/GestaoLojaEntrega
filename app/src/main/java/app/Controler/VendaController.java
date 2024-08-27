@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Venda;
 import app.Service.VendaService;
-import jakarta.validation.Valid;
 
 @Validated
 @RestController
@@ -29,7 +28,7 @@ public class VendaController {
 	private VendaService vendaService;
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody @Valid Venda venda) {
+	public ResponseEntity<String> save(@RequestBody Venda venda) {
 		try {
 			String mensagem = this.vendaService.save(venda);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);
@@ -39,7 +38,7 @@ public class VendaController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update(@RequestBody @Valid Venda venda, @PathVariable long id) {
+	public ResponseEntity<String> update(@RequestBody Venda venda, @PathVariable long id) {
 		try {
 			String mensagem = this.vendaService.update(venda, id);
 			return new ResponseEntity<>(mensagem, HttpStatus.OK);

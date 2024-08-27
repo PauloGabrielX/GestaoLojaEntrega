@@ -2,18 +2,16 @@ package app.Entity;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,24 +26,18 @@ public class Venda {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 
 	private String endereco;
 
-	@NotNull(message = "O valor total não pode ser nulo")
-	@Positive(message = "O valor total deve ser um número positivo")
-	private Double valorTotal;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("vendas")
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "venda_produtos")
-	private List<Produto> produtos;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("vendas")
+	@ManyToOne
+	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario;
 
+	@ManyToMany
+	private List<Produto> produto;
 }

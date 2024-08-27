@@ -2,6 +2,7 @@ package app.Entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -39,6 +40,6 @@ public class Funcionario {
 	private String matricula;
 
 	@OneToMany(mappedBy = "funcionario")
-	@JsonIgnoreProperties("funcionario")
-	private List<Venda> vendas;
+	@JsonIgnore
+	private List<Venda> venda;
 }

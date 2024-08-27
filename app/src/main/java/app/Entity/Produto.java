@@ -2,13 +2,16 @@ package app.Entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -34,8 +37,11 @@ public class Produto {
 	@NotNull(message = "O valor não pode ser nulo")
 	@Positive(message = "O valor deve ser um número positivo")
 	private Double valor;
-
-	@ManyToMany(mappedBy = "produtos")
-	@JsonIgnoreProperties("produtos")
+	
+	@ManyToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
+	@JsonIgnoreProperties("produto")
 	private List<Venda> vendas;
+	
+	
+
 }
